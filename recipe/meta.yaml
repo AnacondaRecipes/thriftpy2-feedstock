@@ -1,5 +1,5 @@
 {% set name = "thriftpy2" %}
-{% set version = "0.4.14" %}
+{% set version = "0.4.16" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 1758ccaeb2a40d8779b50cdd3d7a3b43e8c5752f21ad0a54ded7c251d05219e8
+  sha256: 2aa67ecda99a948e4146341d388260b48ee7da5dfb9a951c4151988e2ed2fb4c
 
 build:
   number: 0
@@ -19,16 +19,24 @@ requirements:
   host:
     - pip
     - python
+    - setuptools
+    - wheel
   run:
     - ply >=3.4,<4.0
     - python
+    - six 1.15.*
 
 test:
+  requires:
+    - pip
+    - python
   imports:
     - thriftpy2
     - thriftpy2.parser
     - thriftpy2.protocol
     - thriftpy2.transport
+  commands:
+    - pip check
 
 about:
   home: https://thriftpy2.readthedocs.io/
@@ -36,9 +44,22 @@ about:
   license_family: MIT
   license_file: LICENSE
   summary: Pure python implementation of Apache Thrift.
+  description: |
+    ThriftPy2 is a pure python implementation of Apache Thrift in a pythonic way.
+
+    The official thrift python lib is not pythonic at all, it needs a complicated process of installation, and 
+    the generated sdk is very ugly. Everytime the thrift file changed you have to re-generate the sdk 
+    which causes more pain in development.
+
+    ThriftPy2 helps that, it's compatible with Apache Thrift so you no longer need to install 'thrift' 
+    package, it can import thrift file on the fly so you no longer need to re-generate the sdk again 
+    and again and again.
   doc_url: https://thriftpy2.readthedocs.io/
   dev_url: https://github.com/Thriftpy/thriftpy2/
 
 extra:
   recipe-maintainers:
     - xhochy
+  skip-lints:
+    - missing_license_url
+    - missing_doc_source_url
