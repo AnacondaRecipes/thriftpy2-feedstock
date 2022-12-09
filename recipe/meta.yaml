@@ -35,6 +35,8 @@ test:
     - thriftpy2.parser
     - thriftpy2.protocol
     - thriftpy2.transport
+  commands:
+    - pip check
 
 about:
   home: https://thriftpy2.readthedocs.io/
