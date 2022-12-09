@@ -19,11 +19,17 @@ requirements:
   host:
     - pip
     - python
+    - setuptools
+    - wheel
   run:
     - ply >=3.4,<4.0
     - python
+    - six 1.15.*
 
 test:
+  requires:
+    - pip
+    - python
   imports:
     - thriftpy2
     - thriftpy2.parser
