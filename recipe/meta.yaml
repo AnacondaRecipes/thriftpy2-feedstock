@@ -1,17 +1,18 @@
 {% set name = "thriftpy2" %}
-{% set version = "0.4.20" %}
+{% set version = "0.5.3" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 8d2ffc5a9a3e3b239418726f83572512240c13adaa135701996749c81a75c2c5
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: ade0165ba060b97333bc7a927229e992441bfa17bb8e13ea05590c2ec3551b17
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed -vv
+  skip: true  # [py<37]
 
 requirements:
   build:
@@ -19,9 +20,10 @@ requirements:
   host:
     - pip
     - python
-    - setuptools
-    - wheel
+    - setuptools >=68
     - cython >=0.28.4,<4
+    - toml
+    - tornado
   run:
     - ply >=3.4,<4.0
     - python
@@ -47,12 +49,12 @@ about:
   description: |
     ThriftPy2 is a pure python implementation of Apache Thrift in a pythonic way.
 
-    The official thrift python lib is not pythonic at all, it needs a complicated process of installation, and 
-    the generated sdk is very ugly. Everytime the thrift file changed you have to re-generate the sdk 
+    The official thrift python lib is not pythonic at all, it needs a complicated process of installation, and
+    the generated sdk is very ugly. Everytime the thrift file changed you have to re-generate the sdk
     which causes more pain in development.
 
-    ThriftPy2 helps that, it's compatible with Apache Thrift so you no longer need to install 'thrift' 
-    package, it can import thrift file on the fly so you no longer need to re-generate the sdk again 
+    ThriftPy2 helps that, it's compatible with Apache Thrift so you no longer need to install 'thrift'
+    package, it can import thrift file on the fly so you no longer need to re-generate the sdk again
     and again and again.
   doc_url: https://thriftpy2.readthedocs.io/
   dev_url: https://github.com/Thriftpy/thriftpy2/
