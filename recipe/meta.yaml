@@ -1,5 +1,5 @@
 {% set name = "thriftpy2" %}
-{% set version = "0.5.3" %}
+{% set version = "0.6.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/Thriftpy/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 16f3fd24f7778416d70b7cbd2cefce28e49ba72abe9f12471ae7697b09c70c25
+  sha256: 84c8b0baa029c4e9df97ed73466db557c37f25962b593a740da5ff8f97686aae
 
 build:
   number: 0
@@ -21,14 +21,18 @@ requirements:
   host:
     - pip
     - python
-    - wheel
     - setuptools >=68
     - toml
     - cython >=0.28.4,<4
+    - tomli
+    - tornado
   run:
     - python
     - ply >=3.4,<4.0
-    - six >=1.15,<2
+    - six >=1.15,<2.dev0
+    - typing_extensions >=3.7.4  # [py<38]
+  run_constrained:
+    - aiohttp >=3.8.0,<4.0.0
 
 test:
   source_files:
@@ -56,12 +60,12 @@ about:
   description: |
     ThriftPy2 is a pure python implementation of Apache Thrift in a pythonic way.
 
-    The official thrift python lib is not pythonic at all, it needs a complicated process of installation, and 
-    the generated sdk is very ugly. Everytime the thrift file changed you have to re-generate the sdk 
+    The official thrift python lib is not pythonic at all, it needs a complicated process of installation, and
+    the generated sdk is very ugly. Everytime the thrift file changed you have to re-generate the sdk
     which causes more pain in development.
 
-    ThriftPy2 helps that, it's compatible with Apache Thrift so you no longer need to install 'thrift' 
-    package, it can import thrift file on the fly so you no longer need to re-generate the sdk again 
+    ThriftPy2 helps that, it's compatible with Apache Thrift so you no longer need to install 'thrift'
+    package, it can import thrift file on the fly so you no longer need to re-generate the sdk again
     and again and again.
   doc_url: https://thriftpy2.readthedocs.io
   dev_url: https://github.com/Thriftpy/thriftpy2
