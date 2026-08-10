@@ -1,5 +1,5 @@
 {% set name = "thriftpy2" %}
-{% set version = "0.7.0 %}
+{% set version = "0.7.0" %}
 
 package:
   name: {{ name }}
