@@ -1,13 +1,13 @@
 {% set name = "thriftpy2" %}
-{% set version = "0.5.3" %}
+{% set version = "0.7.0 %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
   url: https://github.com/Thriftpy/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 16f3fd24f7778416d70b7cbd2cefce28e49ba72abe9f12471ae7697b09c70c25
+  sha256: ccf0d034bc0b29be59e52eef9f18db18848279c86be5b182060a7efe0e3bbae4
 
 build:
   number: 0
@@ -23,12 +23,13 @@ requirements:
     - python
     - wheel
     - setuptools >=68
-    - toml
     - cython >=0.28.4,<4
+    - tomli  # [py<311]
   run:
     - python
     - ply >=3.4,<4.0
     - six >=1.15,<2
+    - typing_extensions >=3.7.4  # [py<38]
 
 test:
   source_files:
