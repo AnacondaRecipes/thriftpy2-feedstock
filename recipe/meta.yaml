@@ -28,7 +28,7 @@ requirements:
   run:
     - python
     - ply >=3.4,<4.0
-    - six >=1.15,<2
+    - ijson >=3.0,<4.0
     - typing_extensions >=3.7.4  # [py<38]
 
 test:
